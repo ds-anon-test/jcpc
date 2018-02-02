@@ -1,0 +1,404 @@
+#################################################################
+#    Ontology to describe cases heard by the Judicial Committee 
+#    of the Privy Council (JCPC)
+#
+#    Version 5
+#    Created by ds-anon-test, 15 November 2017 (modified 2 February 2018)
+#################################################################
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix jcpc: <http://data.bl.uk/jcpc/ontology/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
+@prefix lkif-action: <http://www.estrellaproject.org/lkif-core/action.owl#> .
+@base <http://data.bl.uk/jcpc/ontology/> .
+
+### The below URI will not resolve until the full dataset is published.
+<http://data.bl.uk/jcpc/ontology/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  has Appellant
+jcpc:hasAppellant rdf:type owl:ObjectProperty ;
+                       rdfs:label "has Appellant"@en ;
+                       rdfs:comment "Property of Appeal; refers to an Appellant who brought that Appeal to the JCPC"@en ;
+                       owl:InverseOf jcpc:isAppellantOf ;
+                       rdfs:range jcpc:Appellant .
+
+
+###  is Appellant of
+jcpc:isAppellantOf rdf:type owl:ObjectProperty ;
+                       rdfs:label "is Appellant of"@en ;
+                       rdfs:comment "Property of Appellant; refers to an Appeal brought to the JCPC by that Appellant"@en ;
+                       owl:InverseOf jcpc:hasAppellant ;
+                       rdfs:range wikidata:Q329777 .
+
+
+###  has Intervenant
+jcpc:hasIntervenant rdf:type owl:ObjectProperty ;
+                       rdfs:label "has Intervenant"@en ;
+                       rdfs:comment "Property of Appeal; refers to an Intervenant involved with that Appeal"@en ;
+                       owl:InverseOf jcpc:isIntervenantOf ;
+                       rdfs:range jcpc:Intervenant .
+
+
+###  is Intervenant of
+jcpc:isIntervenantOf rdf:type owl:ObjectProperty ;
+                       rdfs:label "is Intervenant of"@en ;
+                       rdfs:comment "Property of Intervenant; refers to an Appeal with which that Intervenant was involved"@en ;
+                       owl:InverseOf jcpc:hasIntervenant ;
+                       rdfs:range wikidata:Q329777 .
+
+
+###  has Judgment
+jcpc:hasJudgment rdf:type owl:ObjectProperty ;
+                       rdfs:label "has Judgment"@en ;
+                       rdfs:comment "Property of Appeal; refers to a Judgment resulting from that Appeal"@en ;
+                       owl:InverseOf jcpc:isJudgmentOf ;
+                       rdfs:range wikidata:Q327000 .
+
+
+###  is Judgment of
+jcpc:isJudgmentOf rdf:type owl:ObjectProperty ;
+                       rdfs:label "is Judgment of"@en ;
+                       rdfs:comment "Property of Judgment; refers to an Appeal which resulted in that Judgment"@en ;
+                       owl:InverseOf jcpc:hasJudgment ;
+                       rdfs:range wikidata:Q329777 .
+
+                       
+###  has Location
+dul:hasLocation rdf:type owl:ObjectProperty ;
+                       rdfs:label "has Location"@en ;
+                       rdfs:comment "Property of Appeal; refers to the Location where that Appeal originated"@en ;
+                       owl:InverseOf jcpc:isLocationOf ;
+                       rdfs:range vcard:Location .
+
+
+###  is Location of
+dul:isLocationOf rdf:type owl:ObjectProperty ;
+                       rdfs:label "is Location of"@en ;
+                       rdfs:comment "Property of Location; refers to an Appeal originating from that Location"@en ;
+                       owl:InverseOf jcpc:hasLocation ;
+                       rdfs:range wikidata:Q329777 .
+
+                       
+###  has Respondent
+jcpc:hasRespondent rdf:type owl:ObjectProperty ;
+                       rdfs:label "has Respondent"@en ;
+                       rdfs:comment "Property of Appeal; refers to a Respondent who responded to that Appeal"@en ;
+                       owl:InverseOf jcpc:isRespondentOf ;
+                       rdfs:range jcpc:Respondent .
+
+
+###  is Respondent of
+jcpc:isRespondentOf rdf:type owl:ObjectProperty ;
+                       rdfs:label "is Respondent of"@en ;
+                       rdfs:comment "Property of Respondent; refers to an Appeal to which that Respondent responded"@en ;
+                       owl:InverseOf jcpc:hasRespondent ;
+                       rdfs:range wikidata:Q329777 .
+
+
+###  has Third Party
+jcpc:hasThirdParty rdf:type owl:ObjectProperty ;
+                       rdfs:label "has Third Party"@en ;
+                       rdfs:comment "Property of Appeal; refers to a Third Party involved with that Appeal"@en ;
+                       owl:InverseOf jcpc:isThirdPartyOf ;
+                       rdfs:range jcpc:ThirdParty .
+
+
+###  is ThirdParty of
+jcpc:isThirdPartyOf rdf:type owl:ObjectProperty ;
+                       rdfs:label "is Third Party of"@en ;
+                       rdfs:comment "Property of Third Party; refers to an Appeal with which that Third Party was involved"@en ;
+                       owl:InverseOf jcpc:hasThirdParty ;
+                       rdfs:range wikidata:Q329777 .
+
+###  originating Court
+jcpc:originatingCourt rdf:type owl:ObjectProperty ;
+                       rdfs:label "originating Court"@en ;
+                       rdfs:comment "Property of Appeal; refers to the Court where that Appeal originated"@en ;
+                       owl:InverseOf jcpc:originOf ;
+                       rdfs:range wikidata:Q41487 .
+
+
+###  origin of
+jcpc:originOf rdf:type owl:ObjectProperty ;
+                       rdfs:label "origin of"@en ;
+                       rdfs:comment "Property of Court; refers to an Appeal originating from that Court"@en ;
+                       owl:InverseOf jcpc:originatingCourt ;
+                       rdfs:range wikidata:Q329777 .
+
+
+###  relation
+dc:relation rdf:type owl:ObjectProperty ;
+						rdfs:label "related Judgment"@en ;
+						rdfs:comment "Used as a property of Judgment to link to another Judgment known to relate to a similar (or the same) case"@en .
+
+
+###  same As
+owl:sameAs rdf:type owl:ObjectProperty ;
+						rdfs:label "same as"@en ;
+						rdfs:comment "Used to link an entity such as Location, Court, Appellant, Respondent, Intervenant and Third Party to a representation of that entity in an external source"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  Appeal number
+jcpc:appealNumber rdf:type owl:DatatypeProperty ;
+						rdfs:label "Appeal number"@en ;
+						rdfs:comment "The number assigned by the JCPC to an Appeal, included in the original documentation for the resulting Judgment(s)"@en ;
+						rdfs:domain wikidata:Q329777 .
+
+
+###  BAILII identifier
+jcpc:bailiiIdentifier rdf:type owl:DatatypeProperty ;
+						rdfs:label "BAILII identifier"@en ;
+						rdfs:comment "The identifier assigned to a Judgment by the British and Irish Legal Information Institute (BAILII); used in citations"@en ;
+						rdfs:domain wikidata:Q327000 .
+
+						
+###  city
+vcard:locality rdf:type owl:DatatypeProperty ; 
+						rdfs:label "city"@en ;
+						rdfs:comment "The city where a Location is located"@en .
+
+
+###  country-name
+vcard:country-name rdf:type owl:DatatypeProperty ;
+						rdfs:label "country"@en ;
+						rdfs:comment "The country where a Location is located"@en .
+
+
+###  date
+dc:date rdf:type owl:DatatypeProperty ;
+						rdfs:label "date"@en ;
+						rdfs:comment "The date on which an Appeal or Judgment took place"@en .
+
+
+###  geographic coordinates [latitude, longitude]
+vcard:geo rdf:type owl:DatatypeProperty ;
+						rdfs:label "geographic coordinates"@en ;
+						rdfs:comment "The geographic coordinates of a Location, in the format 'latitude, longitude'"@en .
+
+
+###  has version
+dc:hasVersion rdf:type owl:DatatypeProperty ;
+						rdfs:label "has version"@en ;
+						rdfs:comment "Used to provide the URL of the digitised documents for a Judgment"@en .
+
+
+###  identifier
+dc:identifier rdf:type owl:DatatypeProperty ;
+						rdfs:label "identifier"@en ;
+						rdfs:comment "Identification number assigned to an Appeal or Judgment, composed of the Appeal or Judgment year and number, separated by an underscore, e.g. 1860_1"@en .
+
+
+###  Judgment number
+jcpc:judgmentNumber rdf:type owl:DatatypeProperty ;
+						rdfs:label "Judgment number"@en ;
+						rdfs:comment "The number assigned by the JCPC to a Judgment, included in the original documentation for that Judgment and/or the original dataset from which this data was converted"@en ;
+						rdfs:domain wikidata:Q327000 .
+
+
+###  name
+foaf:name rdf:type owl:DatatypeProperty ;
+						rdfs:label "name"@en ;
+						rdfs:comment "The name of an Appellant, Respondent, Intervenant, Third Party or Court"@en .
+
+
+###  region
+vcard:region rdf:type owl:DatatypeProperty ;
+						rdfs:label "region"@en ;
+						rdfs:comment "The region where a Location is located"@en .
+
+
+###  title
+dc:title rdf:type owl:DatatypeProperty ;
+						rdfs:label "title"@en ;
+						rdfs:comment "The title of an Appeal or Judgment, composed of the Appellant and Respondent names, separated by 'v.', followed by the Appeal or Judgment year"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  Appeal
+wikidata:Q329777 rdf:type owl:Class ;
+						rdfs:subClassOf
+							[ rdf:type owl:Restriction ;
+        						owl:onProperty jcpc:appealNumber ;
+        						owl:maxQualifiedCardinality 1 ;
+                                owl:onDataRange xsd:integer
+     						] ,
+							[ rdf:type owl:Restriction ;
+        						owl:onProperty dc:date ;
+        						owl:maxQualifiedCardinality 1 ;
+                                owl:onDataRange xsd:date
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty dc:identifier ;
+        						owl:qualifiedCardinality 1 ;
+                                owl:onDataRange xsd:ID
+     						] ,
+							[ rdf:type owl:Restriction ;
+        						owl:onProperty jcpc:originatingCourt ;
+        						owl:maxQualifiedCardinality 1 ;
+                                owl:onClass wikidata:Q41487
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty dc:title ;
+        						owl:minQualifiedCardinality 1 ;
+                                owl:onDataRange xsd:string
+     						] ;
+						rdfs:label "Appeal"@en ;
+						rdfs:comment "Wikidata definition: 'process for reviewing and changing court decisions'"@en .
+
+
+###  Appellant
+jcpc:Appellant rdfs:subClassOf lkif-action:Agent ,
+    					[ rdf:type owl:Restriction ;
+        					owl:onProperty jcpc:isAppellantOf ;
+        					owl:someValuesFrom wikidata:Q329777
+     					] ,
+     					[ rdf:type owl:Restriction ;
+        					owl:onProperty foaf:name ;
+        					owl:minQualifiedCardinality 1 ;
+                            owl:onDataRange xsd:string
+     					] ;
+     					rdfs:label "Appellant"@en ;
+						rdfs:comment "Organisation or person (including those acting under the title of their official role) appealing to the JCPC"@en .
+
+
+###  Court
+wikidata:Q41487 rdf:type owl:Class ;
+						rdfs:subClassOf
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty foaf:name ;
+        						owl:minQualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:string
+     						] ;
+						rdfs:label "Court"@en ;
+						rdfs:comment "Wikidata definition: 'judicial institution with the authority to resolve legal disputes'"@en .
+
+
+###  Intervenant
+jcpc:Intervenant rdfs:subClassOf lkif-action:Agent ,
+						[ rdf:type owl:Restriction ;
+        					owl:onProperty jcpc:isIntervenantOf ;
+        					owl:someValuesFrom wikidata:Q329777
+     					] ,
+     					[ rdf:type owl:Restriction ;
+        					owl:onProperty foaf:name ;
+        					owl:minQualifiedCardinality 1 ;
+                            owl:onDataRange xsd:string
+     					] ;
+						rdfs:label "Intervenant"@en ;
+						rdfs:comment "Organisation or person (including those acting under the title of their official role) who is not an Appellant or Respondent, but who appears in the case to defend any interests of theirs that might otherwise be compromised by the court's decision"@en .
+
+
+###  Judgment [Wikidata: court decision]
+wikidata:Q327000 rdf:type owl:Class ;
+						rdfs:subClassOf
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty jcpc:bailiiIdentifier ;
+        						owl:maxQualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:ID
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty dc:date ;
+        						owl:maxQualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:date
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty dc:hasVersion ;
+        						owl:maxQualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:string
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty dc:identifier ;
+        						owl:qualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:ID
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty jcpc:judgmentNumber ;
+        						owl:qualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:integer
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty dc:title ;
+        						owl:minQualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:string
+     						] ;
+						rdfs:label "Judgment"@en ;
+						rdfs:comment "Wikidata definition: 'formal decision made by a court'"@en .
+
+
+###  Location
+vcard:Location rdf:type owl:Class ;
+						rdfs:subClassOf
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty vcard:geo ;
+        						owl:maxQualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:string
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty vcard:locality ;
+        						owl:maxQualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:string
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty vcard:region ;
+        						owl:maxQualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:string
+     						] ,
+     						[ rdf:type owl:Restriction ;
+        						owl:onProperty vcard:country-name ;
+        						owl:maxQualifiedCardinality 1 ;
+                            	owl:onDataRange xsd:string
+     						] ;
+						rdfs:label "Location"@en ;
+						rdfs:comment "vCard definition: 'An object representing a named geographical place'"@en .
+
+
+###  Respondent
+jcpc:Respondent rdfs:subClassOf lkif-action:Agent ,
+						[ rdf:type owl:Restriction ;
+        					owl:onProperty jcpc:isRespondentOf ;
+        					owl:someValuesFrom wikidata:Q329777
+     					] ,
+     					[ rdf:type owl:Restriction ;
+        					owl:onProperty foaf:name ;
+        					owl:minQualifiedCardinality 1 ;
+                            owl:onDataRange xsd:string
+     					] ;
+						rdfs:label "Respondent"@en ;
+						rdfs:comment "Organisation or person (including those acting under the title of their official role) responding to an Appeal brought to the JCPC"@en .
+
+
+###  Third Party
+jcpc:ThirdParty rdfs:subClassOf lkif-action:Agent ,
+						[ rdf:type owl:Restriction ;
+        					owl:onProperty jcpc:isThirdPartyOf ;
+        					owl:someValuesFrom wikidata:Q329777
+     					] ,
+     					[ rdf:type owl:Restriction ;
+        					owl:onProperty foaf:name ;
+        					owl:minQualifiedCardinality 1 ;
+                            owl:onDataRange xsd:string
+     					] ;
+						rdfs:label "Third Party"@en ;
+						rdfs:comment "Organisation or person (including those acting under the title of their official role) involved in an Appeal but who is not a party to any contract to which the case relates"@en .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
