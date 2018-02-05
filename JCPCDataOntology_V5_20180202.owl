@@ -368,7 +368,8 @@ vcard:Location rdf:type owl:Class ;
                             	owl:onDataRange xsd:string
      						] ;
 						rdfs:label "Location"@en ;
-						rdfs:comment "vCard definition: 'An object representing a named geographical place'"@en .
+						rdfs:comment "vCard definition: 'An object representing a named geographical place'."@en .
+####  A note on Location: In the JCPC data, the Location is the most detailed piece of place information associated with the Appeal, so it can be either a city, region, or country, which is then reconciled to Geonames. For example, if we know an Appeal took place in the city of Lahore, we can reconcile this to the Geonames entry for Lahore, using an object property. However, Geonames does not contain historical boundary change information; therefore, the region and country are retained using data properties, as the country for Lahore might either be India or Pakistan, depending on the judgment date.
 
 
 ###  Respondent
